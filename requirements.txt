@@ -1,0 +1,10 @@
+# Zephyr Upload Script Dependencies
+
+# Core HTTP library for API requests
+requests>=2.31.0
+
+# Optional: For pytest integration
+pytest>=7.4.0
+
+# Optional: For enhanced JSON handling
+# (standard library json is used, but this provides better formatting)

@@ -1,0 +1,56 @@
+{
+  "cycle_name": "API Test Cycle - Sprint 23",
+  "test_cases": [
+    {
+      "name": "Test User Login with Valid Credentials",
+      "objective": "Verify that users can successfully login with valid credentials",
+      "status": "Pass",
+      "comment": "Login successful with test user",
+      "execution_time": 1500,
+      "environment": "QA",
+      "labels": ["authentication", "smoke"],
+      "steps": [
+        {
+          "description": "Navigate to login page",
+          "expectedResult": "Login page is displayed"
+        },
+        {
+          "description": "Enter valid username and password",
+          "expectedResult": "Credentials are accepted"
+        },
+        {
+          "description": "Click login button",
+          "expectedResult": "User is redirected to dashboard"
+        }
+      ]
+    },
+    {
+      "name": "Test User Login with Invalid Password",
+      "objective": "Verify that login fails with invalid password",
+      "status": "Pass",
+      "comment": "Appropriate error message displayed",
+      "execution_time": 1200,
+      "environment": "QA",
+      "labels": ["authentication", "negative"],
+      "steps": [
+        {
+          "description": "Navigate to login page",
+          "expectedResult": "Login page is displayed"
+        },
+        {
+          "description": "Enter valid username and invalid password",
+          "expectedResult": "Error message is shown"
+        }
+      ]
+    },
+    {
+      "name": "Test API Response Time",
+      "objective": "Verify that API responds within acceptable time limits",
+      "status": "Fail",
+      "comment": "API response time exceeded 2 second threshold (actual: 2.5s)",
+      "execution_time": 2500,
+      "environment": "QA",
+      "labels": ["performance", "api"]
+    }
+  ]
+}
