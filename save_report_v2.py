@@ -4,7 +4,7 @@ def save_reports(df: pd.DataFrame, schema_errors: pd.DataFrame, test_name: str) 
     
     Args:
         df: Original DataFrame from query
-        schema_errors: Pandera failure_cases DataFrame (already contains 'index' column)
+        schema_errors: Pandera failure_cases DataFrame
         test_name: Name of the test (from filename without 'test_' prefix)
         
     Returns:
@@ -20,10 +20,14 @@ def save_reports(df: pd.DataFrame, schema_errors: pd.DataFrame, test_name: str) 
     df.to_csv(data_filename, index=True)
     print(f"\nQuery data saved to: {data_filename}")
     
-    # 2. Save Pandera validation report
-    # The 'index' column in schema_errors already contains the row indices from the original dataframe
+    # 2. Debug: Print schema_errors structure
+    print(f"\nSchema errors columns: {schema_errors.columns.tolist()}")
+    print(f"Schema errors index: {schema_errors.index.tolist()}")
+    
+    # 3. Save Pandera validation report with all available information
     report_filename = os.path.join(REPORTS_FOLDER, f"{test_name}_pandera_report_{timestamp}.csv")
-    schema_errors.to_csv(report_filename, index=False)  # Don't include pandas index, use the 'index' column
+    # Save with index=True to preserve the pandas index (which might contain the failure row numbers)
+    schema_errors.to_csv(report_filename, index=True)
     print(f"Pandera validation report saved to: {report_filename}")
     
     return data_filename, report_filename
